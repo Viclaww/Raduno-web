@@ -13,7 +13,7 @@ const config: Config = {
         poppins: ["Poppins", "sans-serif"],
       },
       colors: {
-        verdant: "#12674A",
+        verdant: "#4d6cfa",
         "purple-primary": "#442B48",
         "purple-secondary": "#E4DFDA",
       },

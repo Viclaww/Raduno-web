@@ -7,18 +7,23 @@ import { GrLocation } from "react-icons/gr";
 // this is the api to this app
 // https://event-api-hkkc.onrender.com/api/v1/events
 
-export default function Page({ params }: { params: { event: string } }) {
+async function getEvent(eventId: string) {
+  const event = await fetch(
+    `https://event-api-hkkc.onrender.com/api/v1/events/${eventId}`
+  );
+  if (!event.ok) {
+    console.log(event.json());
+
+    return "Failed to get data!";
+  }
+  return await event.json();
+}
+
+export default async function Page({ params }: { params: { event: string } }) {
   const { event } = params;
-  const events = {
-    name: "World Comedy Day",
-    organizers: "Mc conex",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, vero fuga eaque amet perspiciatis itaque magni ipsa mollitia temporibus. Temporibus nemo velit eius nesciunt nisi doloremque quis expedita maxime aspernatur excepturi quos mollitia reiciendis cupiditate totam fuga iure, obcaecati atque nulla provident dignissimos eaque. Adipisci sapiente possimus quidem! Mollitia?",
-    location: "23 Nwaniba Road, Uyo",
-    attendes: 1000,
-    startprice: null,
-    date: new Date(),
-  };
+
+  const eventDet = await getEvent(event);
+
   return (
     <>
       <div className="w-full flex flex-col px-5 md:px-14 py-5">
@@ -32,16 +37,16 @@ export default function Page({ params }: { params: { event: string } }) {
           />
 
           <div>
-            <h1 className="text-4xl">{events.name}</h1>
-            <p className="text-justify font-medium">{events.description}</p>
+            <h1 className="text-4xl">{eventDet.name}</h1>
+            <p className="text-justify font-medium">{eventDet.description}</p>
             <p className="text-lg font-bold">
-              Organized by {events.organizers}
+              Organized by {eventDet.organizers}
             </p>
             <p>at least i got the event {event}</p>
             <div>
               <span className="flex">
                 <GrLocation size={24} />
-                <p>{events.location}</p>
+                <p>{eventDet.location}</p>
               </span>
             </div>
           </div>

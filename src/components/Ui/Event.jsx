@@ -17,7 +17,8 @@ function Event({
   eventLocation,
 }) {
   return (
-    <div
+    <Link
+      href={`events/${_id}`}
       key={_id}
       className="h-[50vh]  w-auto relative cursor-pointer hover:drop-shadow-lg hover:scale-[1.02] duration-200 shadow-lg justify-around rounded-md flex flex-col gap-2 bg-purple-secondary p-4"
     >
@@ -57,14 +58,14 @@ function Event({
             <p className="text-xs">Tickets from</p>
             <p className="font-semibold ">{__v ? `N${startprice}` : "Free"}</p>
           </span>
-          <Link className="" href={"/"}>
+          <Link className="" href={`events/${_id}`}>
             <button className="py-2 px-3 hover:bg-verdant bg-transparent w-full border-verdant border font-medium hover:text-white  text-verdant duration-500 rounded">
               View Event
             </button>
           </Link>
         </span>
       </div>
-    </div>
+    </Link>
   );
 }
 
