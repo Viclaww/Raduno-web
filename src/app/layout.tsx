@@ -5,7 +5,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
-  title: "Mint",
+  title: "Raduno",
   description: "Events and everything",
 };
 
