@@ -13,6 +13,7 @@ interface EventType {
   tickets: [];
   createdAt: Date;
   updatedAt: Date;
+  slug: String;
   __v: number;
 }
 

@@ -8,11 +8,16 @@ export function formattedDate(date) {
 
 export async function getEvents() {
   const events = await fetch(
-    "http://localhost:3001/api/v1/events"
+    "http://localhost:3001/api/v1/events",
+    {
+      cache: 'no-store'
+    }
   );
+
   if (!events.ok) {
     return "Failed to get data!";
   }
+  // console.log(await events.json())
   return await events.json();
 }
 
@@ -24,4 +29,14 @@ export async function getEventById(id){
     return "Failed to get data!";
   }
   return await event.json();
+};
+
+export async function getTicketsByEventId(id){
+  const tickets = await fetch(
+  `http://localhost:3001/api/v1/events/${id}`
+  );
+  if(!tickets){
+    return "Failed to get data!";
+  } 
+  return await tickets.json();
 }
