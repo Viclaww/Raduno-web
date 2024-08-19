@@ -1,12 +1,11 @@
 // import Header from "@/components/layout/Header";
-// import Image from "next/image";
-// import image from "../../../assets/samantha-gades-fIHozNWfcvs-unsplash.jpg";
+import Image from "next/image";
+import image from "../../../assets/samantha-gades-fIHozNWfcvs-unsplash.jpg";
 import { BiCalendar } from "react-icons/bi";
 // import { FaLocationPin } from "react-icons/fa6";
-import { getEventById } from "@/data/utils/functions";
+import { getEventById, getTicketsByEventId } from "@/data/utils/functions";
 import { GrLocation } from "react-icons/gr";
 import { formattedDate } from "@/data/utils/functions";
-import Link from "next/link";
 // this is the api to this app
 // https://event-api-hkkc.onrender.com/api/v1/events
 
@@ -14,6 +13,8 @@ export default async function Page({ params }: { params: { event: string } }) {
   const { event } = params;
 
   const { data: eventDet } = await getEventById(event);
+  const tickets = await getTicketsByEventId(eventDet._id);
+  console.log(tickets);
   console.log(eventDet);
   return (
     <>
@@ -42,34 +43,6 @@ export default async function Page({ params }: { params: { event: string } }) {
               {/* <h2 className="text-white text-xl mt-4">{eventDet.tickets.length === 0 ? 'Unlimited': eventDet.tickets.length} Slots lefts</h2> */}
             </figcaption>
           </figure>
-
-          <article className="bg-white bg-opacity-10 w-full mt-10 h-fit backdrop-blur-3xl rounded-lg border-gray-600 p-6 border-[1px] inset-0">
-            <header>
-              <h1 className="text-xl text-white">Event Details</h1>
-            </header>
-            <article>
-              <p className="text-white py-3 text-lg">
-                {eventDet.eventDescription}
-              </p>
-            </article>
-            <section className="my-3">
-            <span className="text-lg font-bold flex items-center text-white">
-              <BiCalendar size={15} color="white"></BiCalendar>
-              <span className="font-normal ml-2">{formattedDate(eventDet.createdAt)}</span>
-            </span>
-            </section>
-            <section>
-              <span className="flex items-center">
-                <GrLocation size={15} color="white" />
-                <span className="font-normal text-white ml-2">{eventDet.eventLocation}</span>
-              </span>
-            </section>
-            <Link href={`events/tickets`}>
-            <button className="w-full my-3 hover:text-white hover:border-[1px] hover:border-white hover:bg-transparent bg-verdant rounded-full py-3 mt-5">
-              Get tickets
-            </button>
-            </Link>
-          </article>
         </section>
       </section>
     </>

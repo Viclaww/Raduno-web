@@ -1,8 +1,10 @@
 import React from "react";
 import Event from "./Event";
 import World from "../../assets/World comedy day.jpg";
-
-const Events = () => {
+import { getEvents } from "@/data/utils/functions";
+const Events = async () => {
+  const {data: events} = await getEvents();
+  console.log(events);
   const event = {
     eventName: "World Comedy Day",
     createdBy: "Mc conex",
@@ -15,12 +17,11 @@ const Events = () => {
     date: new Date(),
   };
   return (
-    <div className="md:p-10 p-5 flex w-full justify-center items-center flex-col">
-      <div className="flex flex-col text-center items-center">
-        <h3 className="text-4xl font-semibold"> Around You</h3>
-        <p>This are the least of the events happening around You</p>
-      </div>
-      <div className="grid w-full grid-cols-1 gap-5  md:grid-cols-3 lg:grid-cols-4 ">
+    <section className="md:p-10 p-5 flex w-full justify-center bg-black flex-col">
+      <section className="flex text-left text-white py-6">
+        <h3 className="text-4xl text-white font-semibold">Events Around You</h3>
+      </section>
+      <div className="grid w-full grid-cols-1 gap-5  md:grid-cols-3 lg:grid-cols-3 ">
         <Event {...event} />
         <Event {...event} />
         <Event {...event} />
@@ -28,16 +29,16 @@ const Events = () => {
       </div>
       <div>
         <div>
-          <h3>Explore more events</h3>
+          <h3 className="text-white">Explore more events</h3>
         </div>
-        <div className="grid w-full grid-cols-1 gap-5  md:grid-cols-3 lg:grid-cols-4 ">
+        <div className="grid w-full grid-cols-1 gap-5  md:grid-cols-3 lg:grid-cols-3 ">
           <Event {...event} />
           <Event {...event} />
           <Event {...event} />
           <Event {...event} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

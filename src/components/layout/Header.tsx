@@ -11,11 +11,7 @@ function Header() {
       path: "/events",
     },
     {
-      title: "Create Event",
-      path: "/create",
-    },
-    {
-      title: "About Us",
+      title: "About Raduno",
       path: "/about",
     },
     {
@@ -28,20 +24,12 @@ function Header() {
     },
   ];
   return (
-    <nav className="px-10 w-full md:justify-around justify-between items-center flex py-3">
-      <h3 className={`font-julee text-5xl text-purple-primary`}>
-        <Link href={"/"}>Mint</Link>
-      </h3>
-      <div className="relative md:block hidden w-1/3">
-        <input
-          placeholder="Search Events"
-          className="p-4 border focus:outline-none hidden md:block pl-5 w-full rounded-full"
-          type="text"
-        />
-        <span className="md:absolute text-black md:text-white md:bg-verdant p-2 rounded-full md: top-1 right-1">
-          <IoIosSearch size={35} />
-        </span>
-      </div>
+    <nav className="w-full bg-black flex md:justify-between px-4 md:px-12 justify-between items-center py-3">
+      <header className="w-fit">
+        <h3 className={`text-3xl text-white`}>
+          <Link href={"/"}>Raduno</Link>
+        </h3>
+      </header>
       <NavLinks navLinks={navLinks} />
     </nav>
   );
