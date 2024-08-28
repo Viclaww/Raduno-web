@@ -8,9 +8,9 @@ export function formattedDate(date) {
 
 export async function getEvents() {
   const events = await fetch(
-    "http://localhost:3001/api/v1/events",
+    "https://event-api-hkkc.onrender.com/api/v1/events",
     {
-      cache: 'no-store'
+      cache: "no-store",
     }
   );
 
@@ -21,22 +21,23 @@ export async function getEvents() {
   return await events.json();
 }
 
-export async function getEventById(id){
+export async function getEventByName(name) {
   const event = await fetch(
-    `http://localhost:3001/api/v1/events/${id}`
+    `https://event-api-hkkc.onrender.com/api/v1/events/events/${name}`
   );
+
   if (!event) {
     return "Failed to get data!";
   }
   return await event.json();
-};
+}
 
-export async function getTicketsByEventId(id){
+export async function getTicketsByEventId(id) {
   const tickets = await fetch(
-  `http://localhost:3001/api/v1/events/${id}`
+    `https://event-api-hkkc.onrender.com/api/v1/events/${id}`
   );
-  if(!tickets){
+  if (!tickets) {
     return "Failed to get data!";
-  } 
+  }
   return await tickets.json();
 }

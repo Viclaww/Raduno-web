@@ -8,38 +8,39 @@ function Event({
   eventFlier,
   eventName,
   createdBy,
-  date,
+  eventDate: date,
   __v,
   eventLocation,
-  slug
+  slug,
 }) {
   return (
-    <section
-      // href={`events/${_id}`}
+    <Link
+      href={`events/${slug}`}
       key={_id}
       className="h-[400px]  w-auto relative hover:scale-[1.02] duration-200 shadow-lg justify-around rounded-2xl mx-3 flex flex-col"
     >
       <div className={`w-full mx-auto h-1/2 flex `}>
-        {/* <Image
+        <Image
           className="object-cover rounded-md cursor-pointer bg-black"
           width={500}
           height={500}
           src={eventFlier}
           alt={eventName}
-        /> */}
-         {/* <div className="absolute inset-0 bg-black opacity-15"></div> */}
+        />
+        {/* <div className="absolute inset-0 bg-black opacity-15"></div> */}
       </div>
-      <header className="w-full flex h-1/2 flex-col py-2">
+      <div className="w-full flex h-1/2 flex-col py-2">
         <section className="font-normal text-white ">
-          <span className="capitalize">{createdBy.name}</span> {'\u2022'} {eventLocation}
+          <span className="capitalize">{createdBy}</span> {"\u2022"}{" "}
+          {eventLocation}
         </section>
-          <h3 className="text-xl text-ellipsis text-white line-clamp-1">
-            {eventName}
-          </h3>
-          <p className="absolute flex px-3 gap-1 top-3 left-4 drop-shadow-md  p-1 rounded bg-white">
-            <BiCalendar size={20} />
-            {formattedDate(date)}
-          </p>
+        <h3 className="text-xl text-ellipsis text-white line-clamp-1">
+          {eventName}
+        </h3>
+        <p className="absolute flex px-3 gap-1 top-3 left-4 drop-shadow-md  p-1 rounded bg-white">
+          <BiCalendar size={20} />
+          {date}
+        </p>
         <div className="w-full flex flex-row justify-between items-center px-4 mt-5">
           <BsPeopleFill size={20} color="white"></BsPeopleFill>
           <Link href={`events/${slug}`}>
@@ -48,8 +49,8 @@ function Event({
             </button>
           </Link>
         </div>
-      </header>
-    </section>
+      </div>
+    </Link>
   );
 }
 

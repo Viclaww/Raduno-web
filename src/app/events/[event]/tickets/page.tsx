@@ -1,18 +1,18 @@
 // import Header from "@/components/layout/Header";
-import Image from "next/image";
-import image from "../../../assets/samantha-gades-fIHozNWfcvs-unsplash.jpg";
+// import Image from "next/image";
+// import image from "../../../assets/samantha-gades-fIHozNWfcvs-unsplash.jpg";
 import { BiCalendar } from "react-icons/bi";
 // import { FaLocationPin } from "react-icons/fa6";
-import { getEventById, getTicketsByEventId } from "@/data/utils/functions";
-import { GrLocation } from "react-icons/gr";
-import { formattedDate } from "@/data/utils/functions";
+import { getEventByName, getTicketsByEventId } from "@/data/utils/functions";
+// import { GrLocation } from "react-icons/gr";
+// import { formattedDate } from "@/data/utils/functions";
 // this is the api to this app
 // https://event-api-hkkc.onrender.com/api/v1/events
 
 export default async function Page({ params }: { params: { event: string } }) {
   const { event } = params;
 
-  const { data: eventDet } = await getEventById(event);
+  const { data: eventDet } = await getEventByName(event);
   const tickets = await getTicketsByEventId(eventDet._id);
   console.log(tickets);
   console.log(eventDet);

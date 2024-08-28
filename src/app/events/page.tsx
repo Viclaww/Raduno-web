@@ -9,6 +9,7 @@ interface EventType {
   eventName: string;
   date: Date;
   eventTime: Date;
+  eventDate: Date;
   createdBy: string;
   tickets: [];
   createdAt: Date;
